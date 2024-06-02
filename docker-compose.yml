@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    image: your-springboot-app-image
+    container_name: springboot-app
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/var/lib/redis
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ubuntu/redis-data
+      o: bind
