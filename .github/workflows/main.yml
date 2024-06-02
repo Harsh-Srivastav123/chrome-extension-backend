@@ -22,5 +22,5 @@ jobs:
     # - name: stop old docker compose
     #   run: sudo docker-compose down || true
 
-    # - name: Build with Maven
-    #   run: mvn -B package --file pom.xml
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
